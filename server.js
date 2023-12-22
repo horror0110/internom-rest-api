@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const userRoute = require("./routes/users");
-
+const bookRoute = require("./routes/books");
 
 const app = express();
 
@@ -32,12 +32,12 @@ app.use(
     secret: "ganaa247", // Change this to a secret key for session encryption
     resave: false,
     saveUninitialized: false,
-  
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/api/v1/auth", userRoute);
+app.use("/api/v1/books", bookRoute);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Express server is running !");
